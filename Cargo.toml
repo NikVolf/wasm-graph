@@ -1,0 +1,16 @@
+[package]
+name = "wasm-graph"
+version = "0.1.0"
+authors = ["Nikolay Volf <nikvolf@gmail.com>"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+description = "WASM format graph representation"
+keywords = ["wasm", "webassembly", "format"]
+
+[dependencies]
+parity-wasm = { version = "0.40.1" }
+
+[workspace]
+members = [
+  "./cli",
+]

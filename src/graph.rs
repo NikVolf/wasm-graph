@@ -4,12 +4,7 @@
 
 use parity_wasm::elements;
 use super::ref_list::{RefList, EntryRef};
-use std::{
-	vec::Vec,
-	borrow::ToOwned,
-	string::String,
-	collections::BTreeMap,
-};
+use std::collections::BTreeMap;
 
 /// Imported or declared variant of the same thing.
 ///
