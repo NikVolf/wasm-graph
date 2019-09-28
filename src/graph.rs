@@ -3,7 +3,7 @@
 #![warn(missing_docs)]
 
 use parity_wasm::elements;
-use super::ref_list::{RefList, EntryRef};
+use crate::ref_list::{RefList, EntryRef};
 use std::collections::BTreeMap;
 
 /// Imported or declared variant of the same thing.
@@ -33,6 +33,12 @@ pub enum Error {
 	Format(elements::Error),
 	/// Detached entry
 	DetachedEntry,
+}
+
+impl From<elements::Error> for Error {
+	fn from(v: elements::Error) -> Self {
+		Self::Format(v)
+	}
 }
 
 /// Function origin (imported or internal).
@@ -774,10 +780,7 @@ pub fn generate(f: &Module) -> Result<Vec<u8>, Error> {
 #[cfg(test)]
 mod tests {
 
-	extern crate wabt;
-	extern crate indoc;
-
-	use self::indoc::indoc;
+	use indoc::indoc;
 
 	use parity_wasm::elements;
 

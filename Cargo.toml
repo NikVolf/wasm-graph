@@ -6,9 +6,10 @@ license = "MIT/Apache-2.0"
 readme = "README.md"
 description = "WASM format graph representation"
 keywords = ["wasm", "webassembly", "format"]
+edition = "2018"
 
 [dependencies]
-parity-wasm = "0.40"
+parity_wasm = { package = "parity-wasm", version = "0.40" }
 
 [dev-dependencies]
 wabt = "0.9"
