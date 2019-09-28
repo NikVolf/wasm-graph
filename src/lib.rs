@@ -23,6 +23,7 @@ pub fn parse_file<P: AsRef<std::path::Path>>(p: P) -> Result<Module, graph::Erro
 }
 
 /// Save graph representation to file.
+// TODO: feature gate io
 pub fn generate_file<P: AsRef<std::path::Path>>(module: &Module, p: P) -> Result<(), graph::Error> {
     use parity_wasm::elements::Serialize;
 
