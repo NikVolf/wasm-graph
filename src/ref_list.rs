@@ -270,7 +270,7 @@ impl<T> RefList<T> {
     }
 
     /// Iterate through entries.
-    pub fn iter(&self) -> slice::Iter<EntryRef<T>> {
+    pub fn iter(&self) -> ::std::slice::Iter<EntryRef<T>> {
         self.items.iter()
     }
 }

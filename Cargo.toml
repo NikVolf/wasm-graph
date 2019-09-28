@@ -8,9 +8,8 @@ description = "WASM format graph representation"
 keywords = ["wasm", "webassembly", "format"]
 
 [dependencies]
-parity-wasm = { version = "0.40.1" }
+parity-wasm = "0.40"
 
-[workspace]
-members = [
-  "./cli",
-]
+[dev-dependencies]
+wabt = "0.9"
+indoc = "0.3"

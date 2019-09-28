@@ -775,6 +775,9 @@ pub fn generate(f: &Module) -> Result<Vec<u8>, Error> {
 mod tests {
 
 	extern crate wabt;
+	extern crate indoc;
+
+	use self::indoc::indoc;
 
 	use parity_wasm::elements;
 
