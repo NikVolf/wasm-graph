@@ -78,8 +78,11 @@ pub struct Func {
 /// within the module - `origin` field is handling this.
 #[derive(Debug)]
 pub struct Global {
+	/// Value type of the global.
 	pub content: elements::ValueType,
+	/// Is global mutable.
 	pub is_mut: bool,
+	/// Imported or declared.
 	pub origin: GlobalOrigin,
 }
 
