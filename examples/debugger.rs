@@ -1,7 +1,11 @@
-use wasm_graph;
-use parity_wasm::elements::{Type, FunctionType, ValueType};
+use wasm_graph::{parse_file, generate_file, ImportedOrDeclared, Func, Instruction};
+use parity_wasm::elements::{self, Type, FunctionType, ValueType};
 
 use std::env;
+
+//
+// This example adds logging of index of called function, to each function!
+//
 
 fn main() {
     let args = env::args().collect::<Vec<_>>();
@@ -10,21 +14,33 @@ fn main() {
         return;
     }
 
-    let mut module = wasm_graph::parse_file(&args[1]).expect("Failed to load");
+    let mut module = parse_file(&args[1]).expect("Failed to load");
 
     let type_ref = module.types.push(
         Type::Function(FunctionType::new(
-            vec![ValueType::I32, ValueType::I32],
+            vec![ValueType::I32],
             None,
         ))
     );
 
-    module.funcs.push(
-        wasm_graph::Func {
+    let debug_func = module.funcs.push(
+        Func {
             type_ref: type_ref.clone(),
-            origin: wasm_graph::ImportedOrDeclared::Imported("env".to_string(), "debug".to_string())
+            origin: ImportedOrDeclared::Imported("env".to_string(), "debug".to_string())
         }
     );
 
-    wasm_graph::generate_file(&module, &args[2]).expect("Failed to save");
+    for f in module.funcs.iter() {
+        let idx = f.order().expect("All iterable should not be detached");
+        let mut f = f.write();
+        match f.origin {
+            ImportedOrDeclared::Declared(ref mut b) => {
+                b.code.insert(0, Instruction::Plain(elements::Instruction::I32Const(idx as i32)));
+                b.code.insert(1, Instruction::Call(debug_func.clone()));
+            },
+            _ => continue,
+        }
+    }
+
+    generate_file(&module, &args[2]).expect("Failed to save");
 }

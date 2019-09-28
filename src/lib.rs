@@ -7,7 +7,8 @@ mod ref_list;
 
 pub use graph::{
     Module, Func, Memory, Table, Global, Export, ElementSegment,
-    DataSegment, ImportedOrDeclared, Error, parse, generate
+    DataSegment, ImportedOrDeclared, Instruction, Error, parse,
+    generate,
 };
 
 /// Parse file to graph representation.
