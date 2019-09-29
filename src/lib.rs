@@ -27,7 +27,7 @@ pub fn parse_file<P: AsRef<std::path::Path>>(p: P) -> Result<Module, graph::Erro
 pub fn generate_file<P: AsRef<std::path::Path>>(module: &Module, p: P) -> Result<(), graph::Error> {
     use parity_wasm::elements::Serialize;
 
-    let mut f = ::std::fs::File::open(p)
+    let mut f = ::std::fs::File::create(p)
         .map_err(|e| parity_wasm::elements::Error::HeapOther(format!("Can't create file: {:?}", e)))?;
 
     Ok(module.generate()?.serialize(&mut f)?)
