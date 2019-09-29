@@ -4,7 +4,8 @@ use parity_wasm::elements::{self, Type, FunctionType, ValueType};
 use std::env;
 
 //
-// This example adds logging of index of called function, to each function!
+// This example adds logging of index of called function, to each function, so you can
+// figure out call stack in embedder!
 //
 
 fn main() {

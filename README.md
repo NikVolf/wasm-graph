@@ -5,7 +5,7 @@ WebAssembly format in graph representation!
 [![Build Status](https://travis-ci.org/nikvolf/wasm-graph.svg?branch=master)](https://travis-ci.org/paritytech/parity-wasm)
 [![crates.io link](https://img.shields.io/crates/v/wasm-graph.svg)](https://crates.io/crates/parity-wasm)
 
-## Rust WebAssembly format serializing/deserializing
+## Usage
 
 Add to Cargo.toml
 
