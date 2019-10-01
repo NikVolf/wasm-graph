@@ -11,6 +11,8 @@ pub use graph::{
     generate,
 };
 
+pub use ref_list::{RefList, EntryRef};
+
 /// Parse file to graph representation.
 // TODO: feature gate io
 pub fn parse_file<P: AsRef<std::path::Path>>(p: P) -> Result<Module, graph::Error> {
