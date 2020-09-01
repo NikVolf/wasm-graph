@@ -5,6 +5,8 @@ WebAssembly format in graph representation!
 [![Build Status](https://travis-ci.org/nikvolf/wasm-graph.svg?branch=master)](https://travis-ci.org/nikvolf/wasm-graph)
 [![crates.io link](https://img.shields.io/crates/v/wasm-graph.svg)](https://crates.io/crates/wasm-graph)
 
+[Documentation](https://docs.rs/wasm-graph)
+
 ## Usage
 
 Add to Cargo.toml
