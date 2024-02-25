@@ -99,6 +99,11 @@ impl<T> EntryRef<T> {
     pub fn link_count(&self) -> usize {
         Rc::strong_count(&self.0) - 1
     }
+
+    /// If entry equals by ptr to another ref
+    pub fn eq(&self, other: &Self) -> bool {
+        Rc::ptr_eq(&self.0, &other.0)
+    }
 }
 
 /// List that tracks references and indices.
@@ -233,6 +238,16 @@ impl<T> RefList<T> {
     /// Delete one item.
     pub fn delete_one(&mut self, index: usize) {
         self.done_delete(&[index])
+    }
+
+    /// Delete an entry (by ref)
+    pub fn delete_entry(&mut self, entry: &EntryRef<T>) -> bool {
+        if let Some((entry_index, _)) = self.items.iter().enumerate().find(|(_, item)| item.eq(entry)) {
+            self.delete_one(entry_index);
+            true
+        } else {
+            false
+        }
     }
 
     /// Initialize from slice.
@@ -555,5 +570,20 @@ mod tests {
         assert_eq!(item40.order(), Some(5));
         assert_eq!(item50.order(), Some(6));
         assert_eq!(item60.order(), Some(7));
+    }
+
+    #[test]
+    fn delete_by_ref() {
+        let mut list = RefList::<u32>::new();
+        let item10 = list.push(10);
+        let item20 = list.push(20);
+        let item30 = list.push(30);
+
+        let item_ref_2 = item20.clone();
+
+        list.delete_entry(&item_ref_2);
+        assert_eq!(item10.order(), Some(0));
+        assert_eq!(item20.order(), None);
+        assert_eq!(item30.order(), Some(1));
     }
 }
