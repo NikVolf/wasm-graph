@@ -79,7 +79,9 @@ pub type TableOrigin = ImportedOrDeclared;
 /// and the actual code. This part is the actual code.
 #[derive(Debug)]
 pub struct FuncBody {
+	/// Function local variables (wasm stack).
 	pub locals: Vec<elements::Local>,
+	/// Function code.
 	pub code: Vec<Instruction>,
 }
 
