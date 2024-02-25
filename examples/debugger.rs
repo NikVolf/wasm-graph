@@ -20,7 +20,7 @@ fn main() {
     let type_ref = module.types.push(
         Type::Function(FunctionType::new(
             vec![ValueType::I32],
-            None,
+            vec![],
         ))
     );
 

@@ -10,7 +10,7 @@ keywords = ["wasm", "webassembly", "format"]
 edition = "2018"
 
 [dependencies]
-parity_wasm = { package = "parity-wasm", version = "0.40" }
+parity_wasm = { package = "parity-wasm", version = "0.45" }
 
 [dev-dependencies]
 wabt = "0.9"
