@@ -41,6 +41,29 @@ impl From<elements::Error> for Error {
 	}
 }
 
+
+impl ::std::fmt::Display for Error {
+	fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+		match *self {
+			Error::InconsistentSource => write!(f, "Inconsistent source"),
+			Error::Format(ref e) => write!(f, "Format error: {e}"),
+			Error::DetachedEntry => write!(f, "Detached entry in the current module state"),
+		}
+	}
+}
+
+
+impl ::std::error::Error for Error {
+	fn description(&self) -> &str {
+		match *self {
+			Error::InconsistentSource => "Inconsistent source",
+			Error::Format(_) => "Format error of the source bytes",
+			Error::DetachedEntry => "Detached entry in the current module state",
+		}
+	}
+}
+
+
 /// Function origin (imported or internal).
 pub type FuncOrigin = ImportedOrDeclared<FuncBody>;
 /// Global origin (imported or internal).
