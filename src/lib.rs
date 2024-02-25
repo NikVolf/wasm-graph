@@ -8,7 +8,7 @@ mod ref_list;
 pub use graph::{
     Module, Func, Memory, Table, Global, Export, ElementSegment,
     DataSegment, ImportedOrDeclared, Instruction, Error, parse,
-    generate,
+    generate, ExportLocal,
 };
 
 pub use ref_list::{RefList, EntryRef};
