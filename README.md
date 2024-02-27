@@ -13,7 +13,7 @@ Add to Cargo.toml
 
 ```toml
 [dependencies]
-wasm-graph = "0.1"
+wasm-graph = "0.2"
 ```
 
 and then
